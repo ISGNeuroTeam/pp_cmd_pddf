@@ -13,7 +13,7 @@ class PddfCommand(BaseCommand):
             Keyword("subsearch_key", required=False, otl_type=OTLType.TEXT),
             Keyword("column_to_string", required=False, otl_type=OTLType.ALL),
             Keyword("force_reset_index", required=False, otl_type=OTLType.ALL),
-            Subsearch("subsearches", required=False)
+            Subsearch("subsearches", required=False, inf=True)
         ]
     )
 
@@ -31,6 +31,8 @@ class PddfCommand(BaseCommand):
 
         self.log_progress("Loading function", stage=2, total_stages=4)
         fname = self.get_arg("function").value
+        if fname == 'eval':
+            raise ValueError('Eval function not allowed')
         func = df.__getattr__(fname)
 
         self.log_progress("Loading function arguments", stage=3, total_stages=4)
