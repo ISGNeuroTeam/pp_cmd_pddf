@@ -24,7 +24,7 @@ class TestCommand(TestCase):
     def run_otl(self, otl_query: str = '') -> pd.DataFrame:
         return self.command.run_otl(otl_query=otl_query, storage='', df_print=False)
 
-    def test_otl_v1_compatibility_command(self):
+    def test_pddf_command(self):
         # enter sample dataframe
         sample = pd.DataFrame()
         # create otl query that should return the same dataframe as you have in sample
